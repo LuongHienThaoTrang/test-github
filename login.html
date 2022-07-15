@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="login">
+        <input name="userName" />
+        <input name="password" />
+        <input type="submit" value="OK" />
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        const cookie = document.cookie
+        if (cookie.includes('user_token')) {
+            window.location.href = './index.html'
+        }
+        $('form').submit((e) => {
+            e.preventDefault();
+            alert('SUBMIT')
+            const useName = e.target.querySelector('input[name="userName"]').value;
+            const passWord = e.target.querySelector('input[name="password"]').value;
+            if (useName === 'Trang' && passWord === '123456') {
+                alert('LOGIN SUCCESS');
+                document.cookie = 'user_token=123123123'
+                window.location.href = './index.html'
+                e.target.querySelector('input[name="userName"]').focus();
+            } else {
+                alert('USERNAME || PASSWORD WRONG');
+                e.target.querySelector('input[name="userName"]').focus();
+            }
+        })
+    </script>
+    <script src="./js/login.js"></script>
+</body>
+</html>
